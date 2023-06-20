@@ -11,4 +11,37 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('k')
+
+    var ratingLink = document.querySelector('.rating');
   
+   
+    ratingLink.addEventListener('click', function(event) {
+      event.preventDefault(); 
+  
+    
+      var restaurantList = document.querySelector('.restaurant-list');
+  
+      
+      var placeElements = Array.from(restaurantList.querySelectorAll('.place'));
+  
+  
+      placeElements.sort(function(a, b) {
+        var ratingA = parseFloat(a.querySelector('.rating span').textContent);
+        var ratingB = parseFloat(b.querySelector('.rating span').textContent);
+        return ratingB - ratingA; // Sort in descending order
+      });
+  
+
+      placeElements.forEach(function(place) {
+        restaurantList.removeChild(place);
+      });
+  
+      
+      placeElements.forEach(function(place) {
+        restaurantList.appendChild(place);
+      });
+    });
+  });
